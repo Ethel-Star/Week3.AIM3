@@ -56,14 +56,15 @@ def descriptive_statistics(df: pd.DataFrame):
     :param df: DataFrame with the data to analyze
     :return: DataFrame with descriptive statistics for numerical columns
     """
+    # Selecting only numerical columns
+    numeric_df = df.select_dtypes(include=['number'])
+    
     # Calculating descriptive statistics for numerical columns
-    numerical_stats = df.describe().T
+    numerical_stats = numeric_df.describe().T
     
-    # Calculating additional statistics like variance
-    numerical_stats['variance'] = df.var()
-    
-    # Calculating standard deviation for variability
-    numerical_stats['std_dev'] = df.std()
+    # Calculating additional statistics like variance and standard deviation
+    numerical_stats['variance'] = numeric_df.var()
+    numerical_stats['std_dev'] = numeric_df.std()
     
     return numerical_stats
 # src/eda.py

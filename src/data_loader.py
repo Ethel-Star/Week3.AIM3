@@ -20,6 +20,8 @@ def save_to_csv(df, csv_file_path: str):
     :param csv_file_path: Path to the output .csv file
     """
     df=df.to_csv(csv_file_path, index=False)
-    df = pd.read_csv(csv_file_path, low_memory=False)
+    # df = pd.read_csv(csv_file_path, low_memory=False)
     print(f"File saved to {csv_file_path}")
-    return df 
+    
+
+    
