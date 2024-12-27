@@ -115,9 +115,6 @@ def preprocess_data(df: pd.DataFrame):
 
     return monthly_data
 
-import matplotlib.pyplot as plt
-import seaborn as sns
-
 def bivariate_analysis(df, total_premium_column, total_claims_column, postal_code_column):
     """
     Explore relationships between Total Premium and Total Claims as a function of PostalCode 
@@ -196,8 +193,7 @@ def compare_data(df):
         df['TransactionMonth'] = pd.to_datetime(df['TransactionMonth'], errors='coerce')
 
     # Aggregating total premiums by 'Province' and 'TransactionMonth'
-    geo_trends = df.groupby(['Province', pd.Grouper(key='TransactionMonth', freq='M')])['TotalPremium'].sum().unstack()
-
+    geo_trends = df.groupby(['Province', pd.Grouper(key='TransactionMonth', freq='ME')])['TotalPremium'].sum().unstack()
     # Plotting trends
     plt.figure(figsize=(12, 6))
     for province in geo_trends.columns:
